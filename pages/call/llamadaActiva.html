@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Intervoz</title>
+
+<style>
+
+html,
+body{
+    margin:0;
+    width:100%;
+    height:100%;
+}
+
+#jitsi-container{
+    width:100%;
+    height:100vh;
+}
+
+</style>
+
+</head>
+<body>
+
+<div id="jitsi-container"></div>
+
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script src="https://meet.jit.si/external_api.js"></script>
+<script>
+const socket = io('http://localhost:3000');
+
+const rol =
+localStorage.getItem('rol');
+
+const roomName =
+localStorage.getItem('roomName');
+
+const domain = "meet.jit.si";
+
+const options = {
+
+    roomName: roomName,
+
+    parentNode:
+    document.querySelector('#jitsi-container'),
+
+    width:'100%',
+    height:'100%',
+
+    userInfo:{
+        displayName: rol
+    },
+
+    configOverwrite:{
+        prejoinPageEnabled:false,
+        startWithAudioMuted:false,
+        startWithVideoMuted:true
+    },
+
+    interfaceConfigOverwrite:{
+        SHOW_JITSI_WATERMARK:false
+    }
+
+};
+
+const api = new JitsiMeetExternalAPI(domain, options);
+
+
+api.addEventListener(
+    'readyToClose',
+    async ()=>{
+
+        localStorage.removeItem('roomName');
+
+        /*
+        ====================================
+        REACTIVAR DISPONIBILIDAD
+        ====================================
+        */
+
+        if(rol === 'interprete'){
+
+            const id_interprete =
+            localStorage.getItem(
+                'id_interprete'
+            );
+
+            socket.emit(
+                'cambiarDisponibilidad',
+                {
+                    id_interprete:
+                    id_interprete,
+
+                    disponible:true
+                }
+            );
+
+            try{
+
+                await fetch(
+                    '../../api/disponibilidad.php',
+                    {
+                        method:'POST',
+
+                        headers:{
+                            'Content-Type':
+                            'application/json'
+                        },
+
+                        body:JSON.stringify({
+                            disponible:1
+                        })
+                    }
+                );
+
+            }catch(error){
+                console.log(error);
+            }
+
+            window.location.href =
+            '../interprete/dashboard.php';
+
+        }else{
+
+            window.location.href =
+            '../solicitante/dashboard.php';
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

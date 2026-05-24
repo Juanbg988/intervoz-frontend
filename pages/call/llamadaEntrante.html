@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>Intervoz</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    </head>
+    <body>
+<!-- ============================================================
+    PAGE: LLAMADA ENTRANTE (INTÉRPRETE)
+    ============================================================ -->
+<div class="page active" id="page-incoming">
+    <div class="call-card">
+    <div class="incoming-avatar">🙋</div>
+    <div class="incoming-label">Llamada entrante</div>
+    <div class="incoming-name" id="incoming-caller">{nombre del usuario}</div>
+    <div class="incoming-lang">Lengua: <strong id="incoming-lang-label" style="color:var(--coral)">{lengua}</strong></div>
+    <div class="incoming-rings">
+        <div class="ring-dot"></div><div class="ring-dot"></div><div class="ring-dot"></div>
+    </div>
+    <div class="call-actions">
+        <button class="call-btn reject" onclick="rechazarLlamada()" title="Rechazar">📵</button>
+        <button class="call-btn accept" onclick="aceptarLlamada()" title="Aceptar">📞</button>
+    </div>
+    <p style="font-size:12px;color:var(--text3);margin-top:16px">Entrante</p>
+    </div>
+</div>
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script>
+const socket = io('http://localhost:3000');
+    const id_interprete =
+localStorage.getItem('id_interprete');
+
+const lenguas =
+JSON.parse(
+    localStorage.getItem('lenguas_interprete')
+);
+
+socket.emit('registrarInterprete', {
+    id_interprete: id_interprete,
+    lenguas: lenguas
+});
+
+    socket.on('llamadaYaAceptada', () => {
+
+    alert('La llamada ya fue aceptada');
+
+    window.location.href =
+    '../interprete/dashboard.php';
+
+});
+
+socket.on('entrarSala', (data)=>{
+
+    localStorage.setItem(
+        'roomName',
+        data.roomName
+    );
+
+    window.location.href =
+    'llamadaActiva.html';
+
+});
+
+let aceptando = false;
+
+function aceptarLlamada(){
+    if(aceptando){
+        return;
+    }
+
+    aceptando = true;
+
+    const solicitud =
+    JSON.parse(
+        localStorage.getItem(
+            'solicitud_actual'
+        )
+    );
+
+    socket.emit('aceptarLlamada', {
+        id_solicitud: solicitud.id_solicitud,
+        id_interprete: id_interprete
+    });
+}
+
+function rechazarLlamada(){
+    window.location.href =
+    '../interprete/dashboard.php';
+}
+
+socket.on('llamadaCancelada',()=>{
+
+    alert('La llamada fue cancelada');
+
+    window.location.href =
+    '../interprete/dashboard.php';
+
+});
+
+</script>
+</body>
+</html>

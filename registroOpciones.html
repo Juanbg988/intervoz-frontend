@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>InterVoz</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!--============================================================
+    PAGE: LOGIN
+    ============================================================ -->
+
+<div class="card">
+    <h2>InterVoz</h2>
+    <h3>Bienvenido</h3>
+    <p style="text-align: justify; margin: 0 0 5px 0;">Plataforma de interpretación de lenguas indígenas. Selecciona tu rol para continuar.</p>
+    <div class="role-grid">
+        <button class="role-btn interprete" onclick="selectRole('interprete')">
+            <div class="role-icon">🧑</div>
+            <div class="role-name">Voluntario Intérprete</div>
+            <div class="role-desc">Ofrezco mis habilidades de interpretación</div>
+        </button>
+        <button class="role-btn solicitante" onclick="selectRole('solicitante')">
+            <div class="role-icon">🙋</div>
+            <div class="role-name">Solicitante de Ayuda</div>
+            <div class="role-desc">Necesito un intérprete de lengua indígena</div>
+        </button>
+    </div>
+    <div class="iniciar-grid">
+        <p>¿Ya tienes cuenta?</p>
+        <a href="index.php" class="btn btn-registro">Inicia sesión</a>
+    </div>
+    <div class="btn-volver">
+        <a href="index.php" style="color: #666; text-decoration: none;">← Volver al inicio</a>
+    </div>
+</div>
+
+<!-- ============================================================
+    TOAST
+    ============================================================
+<div class="toast" id="toast">
+    <span class="toast-icon" id="toast-icon">✅</span>
+    <span id="toast-msg">Mensaje</span>
+</div> -->
+
+<!-- ============================================================
+    BACKEND SIMULADO + FRONTEND LOGIC
+    ============================================================ -->
+<script src="assets/js/script.js"></script>
+</body>
+</html>

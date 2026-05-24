@@ -1,0 +1,170 @@
+:root {
+    --primary: #2c3e50;
+    --accent: #3498db;
+    --bg: #f4f7f6;
+    --bg2:      #111627;
+    --bg3:      #d1d1d1;
+    --border:   #a1a1a1d7;
+    --border2:  rgba(255,255,255,0.14);
+    --text:     #1d1d1d;
+    --text2:    #222222;
+    --text3:    #475569;
+    --font-h:   'Syne', sans-serif;
+    --font-b:   'DM Sans', sans-serif;
+    --r:        16px;
+    --r2:       12px;
+    --r3:       8px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--r2);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 350px;
+}
+
+h2 {
+    margin: 0;
+    padding: 0;
+    color: var(--primary);
+    text-align: center;
+}
+
+h3 {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    text-align:center;
+    font-size: 0.9em;
+    color: #666;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover { background: #2980b9; }
+
+.iniciar-grid {
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.iniciar-grid p {
+    margin: 0 0 5px 0;
+}
+
+.btn-volver{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.85em;
+}
+
+.municipio-grid {
+    display: flex;
+    gap: 5px;
+}
+
+.btn-municipio {
+    padding: 0;
+    width: 60px;
+    height: 40px;
+    font-size: 20px;
+}
+
+.documentos-grid {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.subir-archivo {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-subir {
+    width: 180px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background:#96a2af;
+    color:white;
+    border-radius: var(--r3);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-subir:hover{
+    background: #6f767c;
+}
+
+.documento-desc {
+    margin: 0 0 10px 0;
+}
+
+.aviso{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    height: 45px;
+}
+
+.aviso a{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    color: #666;
+    font-size: 16px;
+}
+
+.logo {
+  width: 150px;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.descripcion {
+  text-align: justify;
+  font-size: 0.95em;
+  color: #444;
+  margin-top: 10px;
+}

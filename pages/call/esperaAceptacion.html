@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>Intervoz</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    </head>
+    <body>
+<!-- ============================================================
+    PAGE: ESPERANDO ACEPTACIÓN (SOLICITANTE)
+    ============================================================ -->
+<div class="page active" id="page-waiting">
+  <div class="call-card">
+    <!--<div class="incoming-label" style="color:var(--coral)">Buscando intérprete</div>-->
+    <div style="font-family:var(--font-h);font-size:20px;font-weight:800;margin-bottom:6px">Buscando intérprete...</div>
+    <p style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:20px">
+      Notificando a todos los intérpretes de<br/><strong id="waiting-lang-label" style="color:var(--coral)">{lengua}</strong> disponibles.
+    </p> <!-- ASIGNAR LENGUA DE INTERPRETES EN BUSQUEDA-->
+    <div class="interp-count-display">
+      <span>Intérpretes notificados</span>
+      <span id="notif-count">0</span>
+    </div>
+    <button class="btn btn-ghost" onclick="cancelarLlamada()">❌ Cancelar</button>
+  </div>
+</div>
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script src="../../assets/js/script.js"></script>
+<script>
+const socket = io('http://localhost:3000');
+
+const idSolicitud = localStorage.getItem('id_solicitud');
+
+const idUsuario =
+localStorage.getItem('id_usuario');
+
+/*
+====================================
+REGISTRAR SOLICITANTE
+====================================
+*/
+
+socket.emit(
+    'registrarSolicitante',
+    {
+        id_usuario:idUsuario
+    }
+);
+
+/*
+====================================
+RECONECTAR SOLICITUD
+====================================
+*/
+
+socket.emit(
+    'reconectarSolicitante',
+    {
+        id_solicitud: idSolicitud
+    }
+);
+
+/*
+====================================
+LLAMADA ACEPTADA
+====================================
+*/
+
+socket.on(
+    'llamadaAceptada',
+    (data)=>{
+
+        console.log(
+            'ENTRAR A JITSI',
+            data
+        );
+
+        localStorage.setItem(
+            'roomName',
+            data.roomName
+        );
+
+        window.location.href =
+        'llamadaActiva.html';
+
+    }
+);
+
+/*
+====================================
+INTERPRETES NOTIFICADOS
+====================================
+*/
+socket.on(
+    'interpretesNotificados',
+    (data)=>{
+
+        document.getElementById(
+            'notif-count'
+        ).innerText =
+        data.total;
+
+    }
+);
+</script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+@import url("../../style.css");
+
+/* ============================================================
+    ROLE SELECTOR (Login)
+   ============================================================ */
+.role-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.role-btn {
+    background: var(--bg3);
+    border: 1.5px solid var(--border);
+    border-radius: var(--r2);
+    padding: 24px 16px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex; flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: var(--text);
+    font-family: var(--font-b);
+    text-align: center;
+}
+
+.role-btn:hover {
+    transform: translateY(-3px);
+}
+
+/*
+.role-btn.interprete:hover {
+}
+
+.role-btn.solicitante:hover {
+}*/
+
+.role-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+}
+
+.role-btn.interprete .role-icon {
+    background: rgba(46, 196, 176, 0.76);
+}
+
+.role-btn.solicitante .role-icon {
+    background: rgba(218, 64, 87, 0.76);
+}
+
+.role-name {
+    font-family: var(--font-h);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.role-desc {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.4;
+}
+
+/*  ============================================================
+    DASHBOARD
+    ============================================================ */
+
+.user-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.user-info {
+    flex: 1;
+}
+
+.user-name {
+    font-family: var(--font-h);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.user-role {
+    font-size: 13px;
+    color: var(--text2);
+    margin-top: 2px;
+}
+
+.logout-btn {
+    margin: 0;
+    padding: 12px;
+    width: 8%;
+    height: 100%;
+    background: none;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    color: var(--text3);
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.2s;
+    line-height: 1;
+}
+
+.logout-btn:hover {
+    border-color: #cecece;
+    color: #6e7272;
+}
+
+/*  ============================================================
+    SOLICITANTE - DASHBOARD
+    ============================================================ */
+
+.quick-action {
+    background: linear-gradient(135deg, #cececea8, #c2bebf7c);
+    border: 1.5px solid #978e8fa9;
+    border-radius: var(--r2);
+    padding: 28px 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.quick-action-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.quick-action h3 {
+    font-family: var(--font-h);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.quick-action p {
+    font-size: 14px;
+    color: var(--text2);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.status-grid {
+    background:var(--bg3);
+    border:1px solid var(--border);
+    border-radius:var(--r2);
+    padding:16px 18px;
+}
+
+.status-grid p {
+    text-align: justify;
+    font-size:12px;
+    color:var(--text2);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    font-weight:600;
+    margin-bottom:10px;
+}
+
+.disponible-grid {
+    display:flex;
+    align-items:center;
+    gap:5px;
+    font-size:14px;
+}
+.dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+.dot.green {
+    background: #0faa48;
+}
+
+
+
+/*  ============================================================
+    SOLICITANTE - DASHBOARD
+    ============================================================ */
+
+.availability-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--r2);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.status-panel {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--r2);
+    padding: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
