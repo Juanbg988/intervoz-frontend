@@ -38,9 +38,12 @@ if(isset($_SESSION['id_usuario'])){
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const res = await fetch("https://intervoz-api.onrender.com/conexion.php", {
+    const res = await fetch("https://intervoz-api.onrender.com/api/login.php", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "include",
         body: JSON.stringify({
             correo: document.getElementById("correo").value,
             pass: document.getElementById("pass").value
@@ -52,7 +55,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     if(data.ok){
         window.location.href = data.redirect;
     } else {
-        document.getElementById("msg").innerHTML = "Error login";
+        document.getElementById("msg").innerHTML = data.mensaje || "Error login";
     }
 });
 </script>
