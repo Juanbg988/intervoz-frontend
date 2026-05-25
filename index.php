@@ -33,7 +33,6 @@ if(isset($_SESSION['id_usuario'])){
 
     <div id="msg"></div>
 </div>
-
 <script>
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -55,10 +54,9 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     if(data.ok){
         window.location.href = data.redirect;
     } else {
-        document.getElementById("msg").innerHTML = data.mensaje || "Error login";
+        document.getElementById("msg").innerHTML = data.mensaje;
     }
 });
 </script>
-
 </body>
 </html>
