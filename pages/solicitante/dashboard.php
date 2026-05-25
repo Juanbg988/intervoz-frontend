@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 
 if(!isset($_SESSION['id_usuario'])){
@@ -6,15 +6,27 @@ if(!isset($_SESSION['id_usuario'])){
     exit();
 }
 
-if($_SESSION['rol'] != 'solicitante'){
-    header("Location: index.php");
+if($_SESSION['rol'] != 'interprete'){
+    header("Location: ../../index.php");
     exit();
 }
 
-// Obtener lenguas
-$sqlLenguas = "SELECT * FROM lengua ORDER BY nombre ASC";
-$resultLenguas = mysqli_query($conn, $sqlLenguas);
+include "../../conexion.php"; // 🔥 ESTO TE FALTABA
 
+$sqlInterprete = "
+SELECT id_interprete
+FROM interprete
+WHERE id_usuario = '".$_SESSION['id_usuario']."'
+";
+
+$resultInterprete = mysqli_query($conn, $sqlInterprete);
+
+if(!$resultInterprete || mysqli_num_rows($resultInterprete) <= 0){
+  die("Interprete no encontrado");
+}
+
+$interprete = mysqli_fetch_assoc($resultInterprete);
+$id_interprete = $interprete['id_interprete'];
 ?>
 
 <!DOCTYPE html>
