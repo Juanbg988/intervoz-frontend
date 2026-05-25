@@ -38,7 +38,7 @@ if(isset($_SESSION['id_usuario'])){
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const res = await fetch("https://intervoz-api.onrender.com/api/login.php", {
+    const res = await fetch("https://intervoz-api.onrender.com/conexion.php", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
